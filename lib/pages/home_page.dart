@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:villa52/pages/dashboard_page.dart';
+import 'package:villa52/utils/cart_icons.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -7,7 +8,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Widget> widgetList = [
+  List<Widget> _widgetList = [
     DashboardPage(),
     DashboardPage(),
     DashboardPage(),
@@ -16,11 +17,52 @@ class _HomePageState extends State<HomePage> {
   int _index = 0;
 
   @override
-  Wirdget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(),
       bottomNavigationBar: BottomNavigationBar(
-        items: [],
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.store_mall_directory_outlined,
+              color: Colors.black54,
+            ),
+            title: Text(
+              'Store',
+              style: TextStyle(),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite_border_outlined,
+              color: Colors.black54,
+            ),
+            title: Text(
+              'Fav',
+              style: TextStyle(),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.map_outlined,
+              color: Colors.black54,
+            ),
+            title: Text(
+              'map',
+              style: TextStyle(),
+            ),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.info,
+              color: Colors.black54,
+            ),
+            title: Text(
+              'map',
+              style: TextStyle(),
+            ),
+          ),
+        ],
         selectedItemColor: Colors.redAccent,
         unselectedItemColor: Colors.black,
         type: BottomNavigationBarType.shifting,

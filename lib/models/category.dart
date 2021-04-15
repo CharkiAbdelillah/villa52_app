@@ -1,5 +1,3 @@
-
-
 class Category {
   int categoryId;
   String categoryName;
@@ -28,8 +26,8 @@ class Image {
 
   Image({
     this.url,
-  })
-  Image.fromJson(Map<String,dynamic>json){
-    url=json['src'];
+  });
+  Image.fromJson(Map<String, dynamic> json) {
+    url = json['src'];
   }
 }
