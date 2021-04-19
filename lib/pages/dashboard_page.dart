@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:villa52/widgets/widget_home_categories.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class _DashboardPageState extends State<DashboardPage> {
         child: ListView(
           children: [
             imageCarousel(context),
+            WidgetCategories(),
           ],
         ),
       ),
@@ -24,7 +26,7 @@ class _DashboardPageState extends State<DashboardPage> {
   Widget imageCarousel(BuildContext context) {
     return new Container(
       width: MediaQuery.of(context).size.width,
-      // height: 200.0,
+      height: 200.0,
       child: new Carousel(
         overlayShadow: false,
         borderRadius: true,
@@ -34,11 +36,13 @@ class _DashboardPageState extends State<DashboardPage> {
         images: [
           FittedBox(
             fit: BoxFit.fill,
-            child: Image.asset("assets/images/logo1.png"),
+            // child: Image.asset("assets/images/logo1.png"),
+            child: Image.network(
+                "https://images.pexels.com/photos/6437861/pexels-photo-6437861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
           ),
           FittedBox(
             fit: BoxFit.fill,
-            child: Image.asset("assets/images/logo.png"),
+            child: Image.asset("assets/images/2.jpg"),
           ),
           FittedBox(
             fit: BoxFit.fill,
