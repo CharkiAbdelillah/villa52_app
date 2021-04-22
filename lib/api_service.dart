@@ -5,6 +5,8 @@ import 'package:villa52/models/customer.dart';
 import 'package:villa52/config.dart';
 import 'dart:convert';
 
+import 'package:villa52/models/product.dart';
+
 class APIService {
   Future<bool> createCustomer(CustomerModel model) async {
     var authToken = base64.encode(
@@ -57,11 +59,12 @@ class APIService {
     }
     return data;
   }
-   Future<List<Category>> getProducts(String tagName) async {
+
+  Future<List<Product>> getProducts(String tagName) async {
     List<Product> data = new List<Product>();
     try {
       String url = Config.url +
-          Config.productURL +
+          Config.productsURL +
           "?consumer_key=${Config.key}&consumer_secret=${Config.secret}&tag=$tagName";
       var response = await Dio().get(
         url,

@@ -83,15 +83,25 @@ class _WidgetCategoriesState extends State<WidgetCategories> {
                 width: 80,
                 height: 80,
                 alignment: Alignment.center,
-                child: Image.network(
-                  data.image.url,
-                  height: 80,
+                child: ClipOval(
+                  child: Image.network(
+                    data.image.url,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                    // height: 80,
+                    // fit: BoxFit.cover,
+                    // height: double.infinity,
+                    // width: double.infinity,
+                    // alignment: Alignment.center,
+                  ),
                 ),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
+                        // color: Colors.red,
                         color: Colors.black12,
                         offset: Offset(0, 5),
                         blurRadius: 15),

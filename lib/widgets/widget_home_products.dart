@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:villa52/api_service.dart';
-import 'package:villa52/models/category.dart' as categoryModel;
-// import 'package:villa52/models/category.dart' as Image;
-// import 'package:villa52/models/category.dart';
+import 'package:villa52/models/product.dart';
 
 class WidgetHomeProducts extends StatefulWidget {
-  WidgetHomeProducts({key key,this.labelName,this.tagId})
-  :super(key:key);
+  WidgetHomeProducts({Key key, this.labelName, this.tagId}) : super(key: key);
   String labelName;
   String tagId;
   @override
-  _WidgetHomeProductsState createState()=>
-  _WidgetHomeProductsState();
+  _WidgetHomeProductsState createState() => _WidgetHomeProductsState();
 }
 
 class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
@@ -26,6 +22,7 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      // color: Colors.white,
       color: const Color(0xffF4F7FA),
       child: Column(
         children: <Widget>[
@@ -41,14 +38,13 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
               ),
               Padding(
                 padding: EdgeInsets.only(left: 16, top: 4),
-                child:FlatButton(
-                  onPressed( ){},
+                child: FlatButton(
+                  onPressed: () {},
                   child: Text(
-                  'View All',
-                  style: TextStyle(color: Colors.redAccent),
+                    'View All',
+                    style: TextStyle(color: Colors.redAccent),
+                  ),
                 ),
-                ),
-                
               ),
             ],
           ),
@@ -60,18 +56,16 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
 
   Widget _productsList() {
     return new FutureBuilder(
-        future: apiService.getProducts(this.widget.tagId),
-        builder: (
-          BuildContext context,
-          AsyncSnapshot<List<Product>> model,
-        ) {
-          if (model.hasData) {
-            return _buildList(model.data);
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        });
+      future: apiService.getProducts(this.widget.tagId),
+      builder: (BuildContext context, AsyncSnapshot<List<Product>> model) {
+        if (model.hasData) {
+          return _buildList(model.data);
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
   }
 
   Widget _buildList(List<Product> items) {
@@ -86,8 +80,8 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
         itemBuilder: (context, index) {
           var data = items[index];
           return Column(
-            mainAxisAlignment:MainAxisAlignment.start,
-            mainAxisSize:MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Container(
                 margin: EdgeInsets.all(10),
@@ -95,12 +89,16 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
                 height: 120,
                 alignment: Alignment.center,
                 child: Image.network(
-                  data.images[0].url,
-                  height: 120,
+                  data.images[0].src,
+                  fit: BoxFit.cover,
+                  height: double.infinity,
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  // height: 120,
                 ),
                 decoration: BoxDecoration(
                   shape: BoxShape.rectangle,
-                  borderRadius:BorderRadius.circular(4),
+                  borderRadius: BorderRadius.circular(4),
                   color: Colors.white,
                   boxShadow: [
                     BoxShadow(
@@ -111,16 +109,15 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
                 ),
               ),
               Container(
-                width:130,
-                alignment:Alignment.centerLeft,
-                child:Text(
+                width: 130,
+                alignment: Alignment.centerLeft,
+                child: Text(
                   data.name,
-                  style:TextStyle(
-                    fontSize:14,
-                    color:Colors.black,
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.black,
                   ),
                 ),
-
               ),
               // Container(
               //   margin:EdgeInsets.only(top:4,left:4),
@@ -133,7 +130,7 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
               //       )
               //     ]
               //   )
-              // )           
+              // )
               // Row(
               //   children: [
               //     Text(data.categoryName.toString()),

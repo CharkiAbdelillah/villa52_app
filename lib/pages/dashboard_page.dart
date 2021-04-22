@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:villa52/config.dart';
 import 'package:villa52/widgets/widget_home_categories.dart';
+import 'package:villa52/widgets/widget_home_products.dart';
 
 class DashboardPage extends StatefulWidget {
   @override
@@ -17,6 +19,10 @@ class _DashboardPageState extends State<DashboardPage> {
           children: [
             imageCarousel(context),
             WidgetCategories(),
+            WidgetHomeProducts(
+              labelName: "toop",
+              tagId: Config.interiorAccentor,
+            )
           ],
         ),
       ),
