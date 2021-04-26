@@ -56,7 +56,7 @@ class _WidgetHomeProductsState extends State<WidgetHomeProducts> {
 
   Widget _productsList() {
     return new FutureBuilder(
-      future: apiService.getProducts(this.widget.tagId),
+      future: apiService.getProducts(tagName: this.widget.tagId),
       builder: (BuildContext context, AsyncSnapshot<List<Product>> model) {
         if (model.hasData) {
           return _buildList(model.data);

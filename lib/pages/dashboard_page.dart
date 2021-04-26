@@ -22,6 +22,10 @@ class _DashboardPageState extends State<DashboardPage> {
             WidgetHomeProducts(
               labelName: "toop",
               tagId: Config.interiorAccentor,
+            ),
+            WidgetHomeProducts(
+              labelName: "toop2",
+              tagId: Config.interiorSkylark,
             )
           ],
         ),
@@ -40,11 +44,15 @@ class _DashboardPageState extends State<DashboardPage> {
         autoplay: true,
         dotSize: 4.0,
         images: [
+          // FittedBox(
+          //   fit: BoxFit.fill,
+          //   // child: Image.asset("assets/images/logo1.png"),
+          //   child: Image.network(
+          //       "https://images.pexels.com/photos/6437861/pexels-photo-6437861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+          // ),
           FittedBox(
             fit: BoxFit.fill,
-            // child: Image.asset("assets/images/logo1.png"),
-            child: Image.network(
-                "https://images.pexels.com/photos/6437861/pexels-photo-6437861.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"),
+            child: Image.asset("assets/images/logo1.png"),
           ),
           FittedBox(
             fit: BoxFit.fill,

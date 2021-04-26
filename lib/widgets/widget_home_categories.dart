@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:villa52/api_service.dart';
 import 'package:villa52/models/category.dart' as categoryModel;
+import 'package:villa52/pages/product_page.dart';
 // import 'package:villa52/models/category.dart' as Image;
 // import 'package:villa52/models/category.dart';
 
@@ -76,46 +77,55 @@ class _WidgetCategoriesState extends State<WidgetCategories> {
         itemCount: categories.length,
         itemBuilder: (context, index) {
           var data = categories[index];
-          return Column(
-            children: [
-              Container(
-                margin: EdgeInsets.all(10),
-                width: 80,
-                height: 80,
-                alignment: Alignment.center,
-                child: ClipOval(
-                  child: Image.network(
-                    data.image.url,
-                    width: 100,
-                    height: 100,
-                    fit: BoxFit.cover,
-                    // height: 80,
-                    // fit: BoxFit.cover,
-                    // height: double.infinity,
-                    // width: double.infinity,
-                    // alignment: Alignment.center,
-                  ),
-                ),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                        // color: Colors.red,
-                        color: Colors.black12,
-                        offset: Offset(0, 5),
-                        blurRadius: 15),
-                  ],
-                ),
-              ),
-              Row(
+          return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ProductPage(
+                              categoryId: data.categoryId,
+                            )));
+              },
+              child: Column(
                 children: [
-                  Text(data.categoryName.toString()),
-                  Icon(Icons.keyboard_arrow_right, size: 14),
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    width: 80,
+                    height: 80,
+                    alignment: Alignment.center,
+                    child: ClipOval(
+                      child: Image.network(
+                        data.image.url,
+                        width: 100,
+                        height: 100,
+                        fit: BoxFit.cover,
+                        // height: 80,
+                        // fit: BoxFit.cover,
+                        // height: double.infinity,
+                        // width: double.infinity,
+                        // alignment: Alignment.center,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                            // color: Colors.red,
+                            color: Colors.black12,
+                            offset: Offset(0, 5),
+                            blurRadius: 15),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text(data.categoryName.toString()),
+                      Icon(Icons.keyboard_arrow_right, size: 14),
+                    ],
+                  )
                 ],
-              )
-            ],
-          );
+              ));
         },
       ),
     );

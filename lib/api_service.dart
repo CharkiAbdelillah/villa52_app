@@ -1,5 +1,7 @@
+import 'dart:html';
 import 'dart:io';
 import 'package:dio/dio.dart';
+import 'dart:developer';
 import 'package:villa52/models/category.dart';
 import 'package:villa52/models/customer.dart';
 import 'package:villa52/config.dart';
@@ -13,6 +15,7 @@ class APIService {
       utf8.encode(Config.key + ":" + Config.secret),
     );
     bool ret = false;
+
     try {
       var response = await Dio().post(Config.url + Config.customersURL,
           data: model.toJson(),
@@ -60,12 +63,46 @@ class APIService {
     return data;
   }
 
-  Future<List<Product>> getProducts(String tagName) async {
+  Future<List<Product>> getProducts({
+    int pageNumber,
+    int pageSize,
+    String strSearch,
+    String tagName,
+    String categoryId,
+    String sortBy,
+    // String sortOrder = "asc",
+    String sortOrder = "desc",
+  }) async {
     List<Product> data = new List<Product>();
+
     try {
+      String parameter = "";
+      if (strSearch != null) {
+        parameter += "&search=$strSearch";
+      }
+      if (pageSize != null) {
+        parameter += "&per_page=$pageSize";
+      }
+      if (pageNumber != null) {
+        parameter += "&page=$pageNumber";
+      }
+      if (tagName != null) {
+        parameter += "&tag=$tagName";
+      }
+      if (categoryId != null) {
+        parameter += "&category=$categoryId";
+        // print('hahaha : ' + categoryId);
+        // log('data categoryid: $categoryId');
+      }
+      if (sortBy != null) {
+        parameter += "&orderby=$sortBy";
+      }
+      if (sortOrder != null) {
+        parameter += "&order=$sortOrder";
+      }
       String url = Config.url +
           Config.productsURL +
-          "?consumer_key=${Config.key}&consumer_secret=${Config.secret}&tag=$tagName";
+          "?consumer_key=${Config.key}&consumer_secret=${Config.secret}${parameter.toString()}";
       var response = await Dio().get(
         url,
         options: new Options(

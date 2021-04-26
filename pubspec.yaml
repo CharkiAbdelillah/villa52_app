@@ -23,6 +23,9 @@ environment:
 dependencies:
   dio: 3.0.10
   carousel_pro:
+  provider:
+  snippet_coder_utils: ^1.0.3
+  # flutter_progress_hud: ^2.0.0
   flutter:
     sdk: flutter
 
